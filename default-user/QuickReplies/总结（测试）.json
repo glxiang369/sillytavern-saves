@@ -1,0 +1,46 @@
+{
+    "version": 2,
+    "name": "总结（测试）",
+    "disableSend": false,
+    "placeBeforeInput": false,
+    "injectInput": false,
+    "color": "rgba(0, 0, 0, 0)",
+    "onlyBorderColor": false,
+    "qrList": [
+        {
+            "id": 2,
+            "showLabel": false,
+            "label": "测试用總結",
+            "title": "",
+            "message": "/let key=总结破限预设名 \"【戏剧之王】Gemini_v2.4.5\"||\n/let key=总结使用模型名 \"\"||\n/let key=自动总结层数 100||\n/let key=總結模式 false||\n/let key=正則名稱陣列 [\n\"1去除结束无效提示\",\n\"2去除System\",\n\"北极星正则\",\n\"提取折叠摘要v3\",\n\"无视低层摘要\",\n\"选择\",\n\"移除思维链\",\n\"移除思维链和多余标签v2\",\n\"用户消息添加tagv2\",\n]||\n/* /let key=正則名稱陣列 []|| *|\n/* ====================以上為變數區=================== *|/* \n說明:\n1.變數尾部的||不要去除\n2.总结破限预设名(必填):替换引号内，你专门用于总结的破限的名字。比如之前版本用到的Virgo...那个\n3.总结使用模型名(選填):替换引号内，你专门用于总结的模型的名字。比如gpt-4o-lastest，當空白時使用當前模型\n4.自动总结层数(必填):填入正整數，樓層從最後一個被隱藏的樓層開始計算(例:id=10為hide，自动总结层数為5，則總結id=11~11+4)\n6.總結模式:false為使用變數模式(兼容原本總結破限)，true為聊天歷史模式(不使用變數，使用chathistory作為源文本)\n5.正則名稱陣列:使用陣列寫入正則名稱，正則名稱都需用英文上雙引號包圍，由上到下順序執行，不需要的時候填入甚麼都不要填變成[]\n5-1.當有多個正則時各個正則名稱間需要以,連接，並且最後一個政則名稱尾部不要加入,\n *|/* ====================以上為變數區說明=================== *|\n/let key=聊天使用预设名 {:/preset |:}()||\n/let key=聊天使用模型名 {:/model |:}()||\n/if left=总结使用模型名 right=\"{{noop}}\" {:\n\t/var key=总结使用模型名 \"{{var::聊天使用模型名}}\"|\n:}|\n\n/* 从最新的消息到0进行循环，自动查找未隐藏楼层，得到编号 *|\n/let key=unhide_id_start 0|\n/times guard=off {{lastMessageId}} {:\n\t/let key=reverse_id {:/sub {{lastMessageId}} {{timesIndex}}|:}()|\n\t/let key=FindMsg {:/messages names=on {{var::reverse_id}}|:}()|\n    /if left=FindMsg right=\"{{noop}}\" {:\n    \t/var key=unhide_id_start {{var::reverse_id}}|\n    \t/break|\n    :}|\n:}|\n/if left={{var::unhide_id_start}} right=0 else={:\n\t/var key=unhide_id_start {:/add {{pipe}} 1|:}()|\n:}|\n\n/if left={{lastMessageId}} right={{var::unhide_id_start}} rule=gte else={:\n\t/echo 沒有未隱藏樓層可總結|\n:} {:\n\t/let key=chatlorename {:/getchatlore |:}()|\n\t/let key=cacheUID {:/findentry file={{var::chatlorename}} field=comment \"聊天记录缓存\"|:}()|\n\n\t/if left=cacheUID right=\"{{noop}}\" {:\n\t\t/var key=cacheUID {:/createentry file={{var::chatlorename}}|:}()|\n\t\t/setentryfield file={{var::chatlorename}} uid={{var::cacheUID}} field=comment \"聊天记录缓存\" |\n\t\t/setentryfield file={{var::chatlorename}} uid={{var::cacheUID}} field=constant true |\n\t\t/setentryfield file={{var::chatlorename}} uid={{var::cacheUID}} field=position 1|\n\t:}|\n\t\n\t/let key=unhide_id_end {:/sub {:/add {{var::unhide_id_start}} {{var::自动总结层数}}|:}() 1|:}()|\n\t/setvar key=cache {:/getentryfield file=\"{{var::chatlorename}}\" field=content {{var::cacheUID}}|:}()|\n\t/setvar key=OriginalText {:\n\t\t/let key=Prossesed_Text \"{{noop}}\"|\n\t\t/times {{var::自动总结层数}} {:\n\t\t\t/let key=mes {:/messages names=on {:/add {{var::unhide_id_start}} {{timesIndex}}|:}()|:}()|\n\n\t\t\t/times {:/len {{var::正則名稱陣列}}|:}() {:\n\t\t\t\t/let key=current_regex_name {:/var key=正則名稱陣列 index={{timesIndex}}|:}()||\n\t\t\t\t/var key=mes {:/regex name=\"{{var::current_regex_name}}\" \"{{var::mes}}\"|:}()|\n\t\t\t:}|\n\t\t\t/var key=Prossesed_Text \"{{var::Prossesed_Text}}{{newline}}{{var::mes}}\"|\n\t\t:}|\n\t\t/return \"{{var::Prossesed_Text}}\"|\n\t:}()||\n\t\n\t/if left=總結模式 {:\n\t\t/flushvar OriginalText|\n\t\t/hide 0-{:/sub {{var::unhide_id_start}} 1|:}()|\n\t\t/hide {:/add {{var::unhide_id_end}} 1|:}()-{{lastMessageId}}|\n\t:}|\n\n\t/preset \"{{var::总结破限预设名}}\"|\n\t/model quiet=true \"{{var::总结使用模型名}}\"|\n\t/wait 2000 ||\n\t/let key=GenResult {:/gen lock=on |:}()|\n\t/let key=result_check true||\n\t/if left=GenResult right=0 {:\n\t\t/var key=result_check false|\n\t:}|\n\t/if left=GenResult right=\"{{noop}}\" {:\n\t\t/var key=result_check false|\n\t:}|\n\t/if left=GenResult right=[{{noop}}] {:\n\t\t/var key=result_check false|\n\t:}|\n\t/if left=GenResult right={{{noop}}} {:\n\t\t/var key=result_check false|\n\t:}|\n\t\n\t/if left=result_check else={:\n\t\t/preset \"{{var::聊天使用预设名}}\" |\n\t\t/model quiet=true \"{{var::聊天使用模型名}}\"|\n\t\t/hide 0-{:/sub {{var::unhide_id_start}} 1|:}()|\n\t\t/unhide {{var::unhide_id_start}}-{{lastMessageId}}|\n\t\t/flushvar OriginalText|\n\t\t/flushvar cache|\n\t\t/echo \"总结失败\" |\n\t:} {:\n\t\t/var key=GenResult {:\n\t\t\t/let key=Prossesed_Text \"{{var::GenResult}}\"|\n\t\t\t/times {:/len {{var::正則名稱陣列}}|:}() {:\n\t\t\t\t/let key=current_regex_name {:/var key=正則名稱陣列 index={{timesIndex}}|:}()||\n\t\t\t\t/var key=Prossesed_Text {:/regex name=\"{{var::current_regex_name}}\" \"{{var::Prossesed_Text}}\"|:}()|\n\t\t\t:}|\n\t\t\t/return \"{{var::Prossesed_Text}}\"|\n\t\t:}()|\n\t\t\n\t\t/setvar key=cache \"{{getvar::cache}}{{newline}}{{var::GenResult}}\"|\n\t\t/setentryfield file={{var::chatlorename}} uid={{var::cacheUID}} field=content \"{{getvar::cache}}\"|\n\t\t\n\t\t/preset \"{{var::聊天使用预设名}}\" |\n\t\t/model quiet=true \"{{var::聊天使用模型名}}\"|\n\t\t/flushvar OriginalText|\n\t\t/flushvar cache|\n\n\t\t/hide 0-{{var::unhide_id_end}}|\n\t\t/unhide {:/add {{var::unhide_id_end}} 1|:}()-{{lastMessageId}}|\n\t\t/echo 已总结{{var::unhide_id_start}}至{{var::unhide_id_end}}楼层 |\n\t:}|\n:}|",
+            "contextList": [],
+            "preventAutoExecute": true,
+            "isHidden": false,
+            "executeOnStartup": false,
+            "executeOnUser": false,
+            "executeOnAi": false,
+            "executeOnChatChange": false,
+            "executeOnGroupMemberDraft": false,
+            "executeOnNewChat": false,
+            "automationId": ""
+        },
+        {
+            "id": 6,
+            "showLabel": false,
+            "label": "取消隱藏10層(從最後hide樓層算起)",
+            "title": "",
+            "message": "/let key=unhide_id_start 0|\n/times guard=off {{lastMessageId}} {:\n\t/let key=reverse_id {:/sub {{lastMessageId}} {{timesIndex}}|:}()|\n\t/let key=FindMsg {:/messages names=on {{var::reverse_id}}|:}()|\n    /if left=FindMsg right=\"{{noop}}\" {:\n    \t/var key=unhide_id_start {{var::reverse_id}}|\n    \t/break|\n    :}|\n:}|\n/if left={{var::unhide_id_start}} right=0 else={:\n\t/var key=unhide_id_start {:/add {{pipe}} 1|:}()|\n:}|\n/if left={{var::unhide_id_start}} right=10 rule=lt {:\n\t/var key=unhide_id_start 10|\n:}|\n/unhide {:/sub {{var::unhide_id_start}} 10|:}()-{:/sub {{var::unhide_id_start}} 1|:}()|",
+            "contextList": [],
+            "preventAutoExecute": true,
+            "isHidden": false,
+            "executeOnStartup": false,
+            "executeOnUser": false,
+            "executeOnAi": false,
+            "executeOnChatChange": false,
+            "executeOnGroupMemberDraft": false,
+            "executeOnNewChat": false,
+            "automationId": ""
+        }
+    ],
+    "idIndex": 6
+}
