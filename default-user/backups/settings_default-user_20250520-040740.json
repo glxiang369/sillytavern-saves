@@ -10,7 +10,7 @@
     },
     "currentVersion": "1.12.14",
     "username": "希灵",
-    "active_character": "乡村狂操曲.png",
+    "active_character": "default_Seraphina.png",
     "active_group": null,
     "api_server": "http://127.0.0.1:5000/api",
     "preset_settings": "【GENISIS改】最新版Claude3.7和Gork3 (1)",
@@ -20,11 +20,7 @@
     "main_api": "openai",
     "world_info_settings": {
         "world_info": {
-            "globalSelect": [
-                "-性爱世界书",
-                "剧烈高潮",
-                "针对2.5pro的瑟瑟场景 (2)"
-            ]
+            "globalSelect": []
         },
         "world_info_depth": 2,
         "world_info_min_activations": 0,
