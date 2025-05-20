@@ -496,76 +496,7 @@
             ]
         },
         "dice": {},
-        "regex": [
-            {
-                "id": "856ff0f9-ba02-4aa8-bf19-2484622edb98",
-                "scriptName": "【DepressIon】防截断 v1.5",
-                "findRegex": "/<(guifan|safety_check)>(?:(?!<(guifan|safety_check)>)[\\s\\S])*?<\\/(guifan|safety_check)>/g",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": true,
-                "promptOnly": true,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "cbc4d164-2241-4498-8cd6-ee12dff0a249",
-                "scriptName": "【DepressIon】cot隐藏 v1.5",
-                "findRegex": "/[\\s\\S]*(\\n|>|\\s)(<content>)/",
-                "replaceString": "<content>",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": true,
-                "promptOnly": true,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "c02d90e2-2369-4b99-927b-536485b301ad",
-                "scriptName": "【DepressIon】正文思考v1.5",
-                "findRegex": "/<reminder>(?:[\\s\\S])*?<\\/reminder>/g",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    2
-                ],
-                "disabled": false,
-                "markdownOnly": true,
-                "promptOnly": true,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            },
-            {
-                "id": "9171e798-dc1d-44b1-b824-c1c4f71ca817",
-                "scriptName": "文风思维链删除",
-                "findRegex": "/<writer_think>[\\s\\S]*</writer_think>/gm",
-                "replaceString": "",
-                "trimStrings": [],
-                "placement": [
-                    1
-                ],
-                "disabled": true,
-                "markdownOnly": true,
-                "promptOnly": false,
-                "runOnEdit": true,
-                "substituteRegex": 0,
-                "minDepth": null,
-                "maxDepth": null
-            }
-        ],
+        "regex": [],
         "character_allowed_regex": [],
         "tts": {
             "voiceMap": "",
