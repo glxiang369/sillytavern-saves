@@ -23,9 +23,7 @@
     "main_api": "openai",
     "world_info_settings": {
         "world_info": {
-            "globalSelect": [
-                "针对2.5pro的瑟瑟场景 (2)"
-            ]
+            "globalSelect": []
         },
         "world_info_depth": 2,
         "world_info_min_activations": 0,
@@ -571,6 +569,25 @@
                 "substituteRegex": 0,
                 "minDepth": null,
                 "maxDepth": null
+            },
+            {
+                "id": "a8ff1bc7-15f2-4122-b43b-ded692560538",
+                "scriptName": "​a8ff1bc7-15f2-4122-b43b-ded692560538",
+                "findRegex": "/<%(?![%])([\\s\\S]*?)(?<!%)%>/g",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    1,
+                    2,
+                    6
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": false,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
             }
         ],
         "character_allowed_regex": [
@@ -762,10 +779,10 @@
         "vectors": {},
         "variables": {
             "global": {
-                "LAST_SEND_TOKENS": 81334,
-                "LAST_SEND_CHARS": 119573,
-                "LAST_RECEIVE_TOKENS": 2146,
-                "LAST_RECEIVE_CHARS": 2858
+                "LAST_SEND_TOKENS": 32765,
+                "LAST_SEND_CHARS": 48802,
+                "LAST_RECEIVE_TOKENS": 14,
+                "LAST_RECEIVE_CHARS": 18
             }
         },
         "attachments": [],

@@ -9,11 +9,12 @@
         "AlertWI_调教世界.png": "true",
         "SelectedNavTab": "rm_button_characters",
         "AlertRegex_乡村狂操曲.png": "true",
-        "AlertWI_嫂子的结婚仪式.png": "true"
+        "AlertWI_澡堂氤氲.png": "true",
+        "AlertRegex_澡堂氤氲.png": "true"
     },
     "currentVersion": "1.13.0",
     "username": "希灵",
-    "active_character": "嫂子的结婚仪式.png",
+    "active_character": "澡堂氤氲.png",
     "active_group": null,
     "api_server": "http://127.0.0.1:5000/api",
     "preset_settings": "【GENISIS改】最新版Claude3.7和Gork3 (1)",
@@ -24,6 +25,7 @@
     "world_info_settings": {
         "world_info": {
             "globalSelect": [
+                "-性爱世界书",
                 "针对2.5pro的瑟瑟场景 (2)"
             ]
         },
@@ -571,10 +573,30 @@
                 "substituteRegex": 0,
                 "minDepth": null,
                 "maxDepth": null
+            },
+            {
+                "id": "a8ff1bc7-15f2-4122-b43b-ded692560538",
+                "scriptName": "​a8ff1bc7-15f2-4122-b43b-ded692560538",
+                "findRegex": "/<%(?![%])([\\s\\S]*?)(?<!%)%>/g",
+                "replaceString": "",
+                "trimStrings": [],
+                "placement": [
+                    1,
+                    2,
+                    6
+                ],
+                "disabled": false,
+                "markdownOnly": false,
+                "promptOnly": true,
+                "runOnEdit": false,
+                "substituteRegex": 0,
+                "minDepth": null,
+                "maxDepth": null
             }
         ],
         "character_allowed_regex": [
-            "乡村狂操曲.png"
+            "乡村狂操曲.png",
+            "澡堂氤氲.png"
         ],
         "tts": {
             "voiceMap": "",
@@ -762,10 +784,10 @@
         "vectors": {},
         "variables": {
             "global": {
-                "LAST_SEND_TOKENS": 81334,
-                "LAST_SEND_CHARS": 119573,
-                "LAST_RECEIVE_TOKENS": 2146,
-                "LAST_RECEIVE_CHARS": 2858
+                "LAST_SEND_TOKENS": 16876,
+                "LAST_SEND_CHARS": 32938,
+                "LAST_RECEIVE_TOKENS": 29,
+                "LAST_RECEIVE_CHARS": 35
             }
         },
         "attachments": [],
@@ -1115,8 +1137,7 @@
             "186d2747-343e-4cef-9a6e-b4d4a060aae4",
             "4bc25114-f177-4e72-97d3-f93fd0460c4d"
         ],
-        "迷奸游戏V0.1.png": [],
-        "嫂子的结婚仪式.png": []
+        "澡堂氤氲.png": []
     },
     "nai_settings": {
         "temperature": 1.5,

@@ -23,9 +23,7 @@
     "main_api": "openai",
     "world_info_settings": {
         "world_info": {
-            "globalSelect": [
-                "针对2.5pro的瑟瑟场景 (2)"
-            ]
+            "globalSelect": []
         },
         "world_info_depth": 2,
         "world_info_min_activations": 0,
@@ -762,10 +760,10 @@
         "vectors": {},
         "variables": {
             "global": {
-                "LAST_SEND_TOKENS": 81334,
-                "LAST_SEND_CHARS": 119573,
-                "LAST_RECEIVE_TOKENS": 2146,
-                "LAST_RECEIVE_CHARS": 2858
+                "LAST_SEND_TOKENS": 24196,
+                "LAST_SEND_CHARS": 37023,
+                "LAST_RECEIVE_TOKENS": 2185,
+                "LAST_RECEIVE_CHARS": 2965
             }
         },
         "attachments": [],
