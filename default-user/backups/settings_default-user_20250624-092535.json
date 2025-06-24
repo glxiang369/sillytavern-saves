@@ -3,7 +3,7 @@
     "accountStorage": {
         "__migrated": "1",
         "WINavOpened": "true",
-        "LNavOpened": "true",
+        "LNavOpened": "false",
         "NavOpened": "true",
         "StoryStringValidationCache": "{\"hashCache\":{\"7241261575272609\":{\"fieldsWarned\":{}}}}",
         "AlertWI_调教世界.png": "true",
@@ -2423,7 +2423,7 @@
         "aimlapi_model": "gpt-4o-mini-2024-07-18",
         "xai_model": "grok-3-beta",
         "pollinations_model": "openai",
-        "custom_model": "claude-sonnet-4-20250514(只能色色，清水封号)",
+        "custom_model": "anthropic-opus-4",
         "custom_url": " https://claude-api.sukaka.top/v1",
         "custom_include_body": "",
         "custom_exclude_body": "",
