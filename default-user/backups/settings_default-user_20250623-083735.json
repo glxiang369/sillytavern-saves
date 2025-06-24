@@ -13,7 +13,7 @@
     },
     "currentVersion": "1.13.0",
     "username": "希灵",
-    "active_character": "乡村狂操曲.png",
+    "active_character": "嫂子的结婚仪式.png",
     "active_group": null,
     "api_server": "http://127.0.0.1:5000/api",
     "preset_settings": "【GENISIS改】最新版Claude3.7和Gork3 (1)",
@@ -494,14 +494,13 @@
                     "exclude": [],
                     "api": "custom",
                     "preset": "DepressIon-Lite v2.1",
-                    "api-url": " https://claude-api.sukaka.top/v1",
-                    "model": "【假流式】gemini-2.5-pro-exp-03-25",
+                    "api-url": "https://woshizhu.mom/v1",
+                    "model": "gemini-2.5-pro-exp-03-25",
                     "proxy": "None",
                     "stop-strings": "",
                     "start-reply-with": "",
                     "reasoning-template": "DeepSeek",
-                    "name": "gemini-2.5-flash",
-                    "prompt-post-processing": "strict"
+                    "name": "gemini-2.5-flash"
                 }
             ]
         },
@@ -2765,8 +2764,8 @@
         "aimlapi_model": "gpt-4o-mini-2024-07-18",
         "xai_model": "grok-3-beta",
         "pollinations_model": "openai",
-        "custom_model": "anthropic-opus-4",
-        "custom_url": " https://claude-api.sukaka.top/v1",
+        "custom_model": "【假流式】gemini-2.5-pro-exp-03-25",
+        "custom_url": "https://woshizhu.mom/v1",
         "custom_include_body": "",
         "custom_exclude_body": "",
         "custom_include_headers": "",
